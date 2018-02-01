@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="js/faker.min.js"></script>
+  </head>
+  <body>
+    <textarea id="txtData" name="txtData" rows="20" cols="120"></textarea>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  </body>
+
+  <script>
+  $(function () {
+    var branches = [10,99];
+    var users = [];
+    for (var i=0; i<30; i++) {
+      var newUser = { 
+        id:           Math.floor(Math.random() * 200)+100, 
+        firstname:    faker.name.firstName(),
+        lastname:     faker.name.lastName(), 
+        branch:       branches[Math.floor(Math.random()*2)],
+        phone:        faker.phone.phoneNumberFormat(),
+        oversessions: Math.floor(Math.random() * 2)+1 == 1 ? true : false, 
+        suspended:    Math.floor(Math.random() * 2)+1 == 1 ? true : false,
+        temporary:    Math.floor(Math.random() * 2)+1 == 1 ? true : false,
+        locked:       Math.floor(Math.random() * 2)+1 == 1 ? true : false,
+        secure:       Math.floor(Math.random() * 2)+1 == 1 ? true : false,
+        ip:           faker.internet.ip(),
+      };
+      users.push(newUser);
+    }
+    $('#txtData').val(JSON.stringify(users));
+  });
+  </script>
+</html>
